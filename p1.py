@@ -1,10 +1,12 @@
 import time
 import asyncio
 
+
 async def task(название, секунды):
     print(f"Начинаю {название}")
     await asyncio.sleep(секунды)  # Имитируем долгую работу
     print(f"Закончил {название}")
+
 
 
 async def main():
