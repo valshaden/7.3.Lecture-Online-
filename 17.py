@@ -34,14 +34,17 @@ def start_race():
     
     for name in cars:
         thread = threading.Thread(target=car_race, args=(name,))
+        thread.daemon = True 
         thread.start()  
-    
-    
+
+def reset_race():
+    for name in car_labels:
+        car_labels[name].config(text=f"{name}: Ждет старта")
 
 tk.Button(button_frame, text="СТАРТ", command=start_race, 
          bg="green", fg="white", width=8).pack(side=tk.LEFT, padx=5)
 
-tk.Button(button_frame, text="СБРОС", command=..., 
+tk.Button(button_frame, text="СБРОС", command=reset_race, 
          bg="red", fg="white", width=8).pack(side=tk.LEFT, padx=5)
 
 # Машины
@@ -52,6 +55,7 @@ for name, color in [("Красная", "red"), ("Синяя", "blue"), ("Зел�
                     font=("Courier", 10), fg=color)
     label.pack(pady=5)
     car_labels[name] = label
+    
 
 
 root.mainloop()
